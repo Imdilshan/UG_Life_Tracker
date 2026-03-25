@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UG Life Tracker</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page-header">
+  <h1>UG Life <em>Tracker</em></h1>
+  <p>Enter the first day of your UG.<br>
+     Score each past week honestly, at the end of it.<br>
+     No one is watching. The record is yours alone.</p>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-title">First Day of Your UG</div>
+    <div class="date-row">
+      <p>All 4 years and 8 semesters are calculated from this one date.<br>
+         You can override individual semester dates below if needed.</p>
+      <div class="date-controls">
+        <input type="date" id="startDate">
+        <button class="btn-primary" onclick="buildCalendar()">Build My Calendar →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toggle-link" id="overridesToggle" onclick="toggleOverrides()">◎ Adjust Individual Semester Dates</div>
+
+  <div class="overrides-panel" id="overridesPanel">
+    <div class="years-grid" id="overridesGrid"></div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn-primary" onclick="saveOverrides()">Save & Rebuild</button>
+      <button class="btn-secondary" onclick="clearOverrides()">Clear All Overrides</button>
+    </div>
+  </div>
+
+  <div id="semBanner" style="display:none" class="sem-banner">
+    <div>
+      <h2 id="bannerSemName"></h2>
+      <div class="sub" id="bannerSemSub"></div>
+    </div>
+    <div class="right">
+      <div>Today: <strong id="bannerToday"></strong></div>
+      <div id="bannerOverall"></div>
+    </div>
+  </div>
+
+  <div id="statsRow" style="display:none" class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-value" id="statElapsed">0</div>
+      <div class="stat-label">Weeks<br>Elapsed</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value green" id="statScored">0</div>
+      <div class="stat-label">Weeks<br>Scored</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value green" id="statAvg">—</div>
+      <div class="stat-label">Average<br>Score</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value" id="statRemaining">0</div>
+      <div class="stat-label">Weeks<br>Remaining</div>
+    </div>
+  </div>
+
+  <div id="legendArea" style="display:none">
+    <div class="legend">
+      <div class="legend-group">
+        <div class="legend-swatch unscored"></div>
+        <span>–</span>
+        <div class="legend-swatch s1"></div>
+        <div class="legend-swatch s2"></div>
+        <div class="legend-swatch s3"></div>
+        <div class="legend-swatch s4"></div>
+        <div class="legend-swatch s5"></div>
+        <span>Semester Week (Unscored → Score 1–5)</span>
+      </div>
+      <div class="legend-group">
+        <div class="legend-swatch holiday"></div>
+        <span>–</span>
+        <div class="legend-swatch" style="background:var(--holiday-dark)"></div>
+        <span>Holiday Week (Also Scoreable)</span>
+      </div>
+      <div class="legend-group">
+        <div class="legend-swatch this-week"></div>
+        <span>This Week</span>
+      </div>
+    </div>
+    <div class="legend-hint">← Click any past week to score it</div>
+  </div>
+
+  <div id="calendarArea"></div>
+
+</div>
+
+<div class="modal-overlay" id="scoreModal">
+  <div class="modal">
+    <h3 id="modalTitle"></h3>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-question">
+      How productive and meaningful was this week,<br>
+      in your honest assessment?
+    </div>
+    <div class="score-buttons">
+      <button class="score-btn" data-score="1" onclick="submitScore(1)">1<span class="score-label">Poor</span></button>
+      <button class="score-btn" data-score="2" onclick="submitScore(2)">2<span class="score-label">Low</span></button>
+      <button class="score-btn" data-score="3" onclick="submitScore(3)">3<span class="score-label">Okay</span></button>
+      <button class="score-btn" data-score="4" onclick="submitScore(4)">4<span class="score-label">Good</span></button>
+      <button class="score-btn" data-score="5" onclick="submitScore(5)">5<span class="score-label">Great</span></button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="clearScore()">Clear Score</button>
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
