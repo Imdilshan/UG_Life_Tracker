@@ -103,7 +103,7 @@ Or use Live Server:
 
 ---
 
-## ⚠️ Limitations
+## ⚠️ Limitations(For Now)
 
 - No cloud sync  
 - Data lost if browser storage is cleared  
