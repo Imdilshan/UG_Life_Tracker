@@ -471,3 +471,51 @@
     .week-box { width: 14px; height: 14px; }
     .modal { width: 90vw; padding: 28px 20px; }
   }
+
+
+ .gh-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.credit-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.credit svg {
+  width: 14px !important;
+  height: 14px !important;
+  display: block;
+}
+
+.credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--muted);
+  text-decoration: none;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border);
+
+  transition: all 0.25s ease;
+}
+
+.credit:hover {
+  color: var(--text);
+  border-color: var(--text);
+  background: rgba(0, 0, 0, 0.06);
+} 
